@@ -37,11 +37,13 @@ public final class G21ReaderWriter {
 		try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
 		    String line = null; 
 		    while ((line = reader.readLine()) != null) {
-		    		info.append(line + "\r\n"); 
+		    		info.append(line + "\r\n"); //Maybe want to change the lineending here!
 		    }
 		} catch (IOException e) {
+			//You might want to throw another Exception here?
 			System.out.println("Error in reading and writing the file.");
 			e.printStackTrace();
+			System.exit(1);
 		}
 		
 		return info.toString();
@@ -72,8 +74,10 @@ public final class G21ReaderWriter {
 		    		list.add(line); 
 		    }
 		} catch (IOException e) {
+			//You might want to throw another Exception here?
 			System.out.println("Error in reading and writing the file.");
 			e.printStackTrace();
+			System.exit(1);
 		}
 		
 		return list.toArray(new String[0]);
@@ -91,25 +95,26 @@ public final class G21ReaderWriter {
        }
         
         URL realURL = null;
-		try {
-			realURL = new URL(url);
-		} catch (MalformedURLException e) {
-			System.out.println("Error in creating URL!");
-			e.printStackTrace();
-		}
+        try {
+        	realURL = new URL(url);
+        } catch (MalformedURLException e) {
+        	throw new IllegalArgumentException("Error in creating URL! Provide a proper URL.");
+        }
         
         InputStreamReader isr = null;
 		try {
 			isr = new InputStreamReader(realURL.openStream(), "UTF-8");
 		} catch (IOException e) {
+			//You might want to throw another Exception here?
 			System.out.println("Error in creating InputStream.");
 			e.printStackTrace();
+			System.exit(1);
 		}
 		
  
         // read the site
         StringBuilder source = new StringBuilder();
-        
+
         try (BufferedReader br = new BufferedReader(isr)) {
         	String line ="";
 			while((line = br.readLine()) != null) {
@@ -118,13 +123,13 @@ public final class G21ReaderWriter {
 			
 		    // close Reader
 			br.close();
-		    isr.close();
-		    
+		    isr.close();	        
 		} catch (IOException e) {
+			//You might want to throw another Exception here?
 			System.out.println("Error in reading and writing the site.");
 			e.printStackTrace();
+			System.exit(1);
 		}
-        
         return source.toString();
 	}
 	
@@ -143,7 +148,10 @@ public final class G21ReaderWriter {
 			bw.write(data);
 			bw.close();
 		} catch (IOException e) {
+			//You might want to throw another Exception here?
 			System.out.println("Error! Couldn't write file.");
+			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 	
