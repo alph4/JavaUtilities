@@ -90,9 +90,9 @@ public final class G21ReaderWriter {
 	 * @return sourcecode of the site
 	 */
 	public static String G21ReadSiteAsString(String url) {
-	   if (url == null) {
-		   throw new IllegalArgumentException("No URL provided");
-	   }
+		if (url == null) {
+			throw new IllegalArgumentException("No URL provided");
+		}
 		
 		URL realURL = null;
 		try {
@@ -111,7 +111,7 @@ public final class G21ReaderWriter {
 			System.exit(1);
 		}
 		
- 
+
 		// read the site
 		StringBuilder source = new StringBuilder();
 
