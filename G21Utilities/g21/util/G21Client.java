@@ -50,9 +50,9 @@ public class G21Client {
 				String response = in.readUTF();
 				System.out.println("> " + response);
 				try {
-				    Thread.sleep(1000);
+					Thread.sleep(1000);
 				} catch(InterruptedException ex) {
-				    Thread.currentThread().interrupt();
+					Thread.currentThread().interrupt();
 				}
 			}
 			
