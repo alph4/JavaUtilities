@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class G21ReaderWriter {
+
+	private static String lineSeparator = System.lineSeparator();
 	
 	
 	/**
@@ -23,8 +25,8 @@ public final class G21ReaderWriter {
 	 */
 	public static String G21ReadFileAsString(String path) {
 		if (path == null) {
-			throw new IllegalArgumentException("No path provided");
-	    }
+			throw new IllegalArgumentException("No path provided!");
+		}
 		 
 		File f = new File(path);
 		if (!f.isFile()) {
@@ -35,10 +37,10 @@ public final class G21ReaderWriter {
 		
 		//finally start reading
 		try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
-		    String line = null; 
-		    while ((line = reader.readLine()) != null) {
-		    		info.append(line + "\r\n"); //Maybe want to change the lineending here!
-		    }
+			String line = null; 
+			while ((line = reader.readLine()) != null) {
+				info.append(line + lineSeparator);
+			}
 		} catch (IOException e) {
 			//You might want to throw another Exception here?
 			System.out.println("Error in reading and writing the file.");
@@ -58,7 +60,7 @@ public final class G21ReaderWriter {
 	public static String[] G21ReadFileAsStringArray(String path) {
 		if (path == null) {
 			throw new IllegalArgumentException("No path provided");
-	    }
+		}
 		 
 		File f = new File(path);
 		if (!f.isFile()) {
@@ -69,10 +71,10 @@ public final class G21ReaderWriter {
 		
 		//eventually start reading
 		try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
-		    String line = null; 
-		    while ((line = reader.readLine()) != null) {
-		    		list.add(line); 
-		    }
+			String line = null; 
+			while ((line = reader.readLine()) != null) {
+					list.add(line); 
+			}
 		} catch (IOException e) {
 			//You might want to throw another Exception here?
 			System.out.println("Error in reading and writing the file.");
@@ -90,18 +92,18 @@ public final class G21ReaderWriter {
 	 * @return sourcecode of the site
 	 */
 	public static String G21ReadSiteAsString(String url) {
-       if (url == null) {
-    	   throw new IllegalArgumentException("No URL provided");
-       }
-        
-        URL realURL = null;
-        try {
-        	realURL = new URL(url);
-        } catch (MalformedURLException e) {
-        	throw new IllegalArgumentException("Error in creating URL! Provide a proper URL.");
-        }
-        
-        InputStreamReader isr = null;
+		if (url == null) {
+			throw new IllegalArgumentException("No URL provided");
+		}
+		
+		URL realURL = null;
+		try {
+			realURL = new URL(url);
+		} catch (MalformedURLException e) {
+			throw new IllegalArgumentException("Error in creating URL! Provide a proper URL.");
+		}
+		
+		InputStreamReader isr = null;
 		try {
 			isr = new InputStreamReader(realURL.openStream(), "UTF-8");
 		} catch (IOException e) {
@@ -112,25 +114,25 @@ public final class G21ReaderWriter {
 		}
 		
  
-        // read the site
-        StringBuilder source = new StringBuilder();
+		// read the site
+		StringBuilder source = new StringBuilder();
 
-        try (BufferedReader br = new BufferedReader(isr)) {
-        	String line ="";
+		try (BufferedReader br = new BufferedReader(isr)) {
+			String line ="";
 			while((line = br.readLine()) != null) {
-				source.append(line + "\r\n");		    
+				source.append(line + lineSeparator);		    
 			}
 			
-		    // close Reader
+			// close Reader
 			br.close();
-		    isr.close();	        
+			isr.close();	        
 		} catch (IOException e) {
 			//You might want to throw another Exception here?
 			System.out.println("Error in reading and writing the site.");
 			e.printStackTrace();
 			System.exit(1);
 		}
-        return source.toString();
+		return source.toString();
 	}
 	
 	/**
@@ -149,7 +151,7 @@ public final class G21ReaderWriter {
 			bw.close();
 		} catch (IOException e) {
 			//You might want to throw another Exception here?
-			System.out.println("Error! Couldn't write file.");
+			System.out.println("Error! Couldn't write file. _Ivan_ probably crashed it ;-)");
 			e.printStackTrace();
 			System.exit(1);
 		}

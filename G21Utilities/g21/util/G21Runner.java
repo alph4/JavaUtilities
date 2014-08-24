@@ -39,7 +39,7 @@ public final class G21Runner {
 			}
 			
 		} else if (isUnixSystem()) {
-			//For Unix Systems like Linux
+			//For Unix Systems like Linux distributions like _Ivan_'s Linux Mint
 			try {
 				process = Runtime.getRuntime().exec(command);
 			} catch (IOException e) {
