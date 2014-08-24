@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class G21ReaderWriter {
+
+	private static String lineSeparator = System.lineSeparator();
 	
 	
 	/**
@@ -37,7 +39,7 @@ public final class G21ReaderWriter {
 		try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
 			String line = null; 
 			while ((line = reader.readLine()) != null) {
-				info.append(line + "\r\n"); //Maybe want to change the line ending here!
+				info.append(line + lineSeparator);
 			}
 		} catch (IOException e) {
 			//You might want to throw another Exception here?
@@ -90,9 +92,9 @@ public final class G21ReaderWriter {
 	 * @return sourcecode of the site
 	 */
 	public static String G21ReadSiteAsString(String url) {
-	   if (url == null) {
-		   throw new IllegalArgumentException("No URL provided");
-	   }
+		if (url == null) {
+			throw new IllegalArgumentException("No URL provided");
+		}
 		
 		URL realURL = null;
 		try {
@@ -118,7 +120,7 @@ public final class G21ReaderWriter {
 		try (BufferedReader br = new BufferedReader(isr)) {
 			String line ="";
 			while((line = br.readLine()) != null) {
-				source.append(line + "\r\n");		    
+				source.append(line + lineSeparator);		    
 			}
 			
 			// close Reader
