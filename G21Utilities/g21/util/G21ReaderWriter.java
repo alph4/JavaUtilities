@@ -23,7 +23,7 @@ public final class G21ReaderWriter {
 	 */
 	public static String G21ReadFileAsString(String path) {
 		if (path == null) {
-			throw new IllegalArgumentException("No path provided");
+			throw new IllegalArgumentException("No path provided!");
 	    }
 		 
 		File f = new File(path);
@@ -37,7 +37,7 @@ public final class G21ReaderWriter {
 		try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
 		    String line = null; 
 		    while ((line = reader.readLine()) != null) {
-		    		info.append(line + "\r\n"); //Maybe want to change the lineending here!
+		    	info.append(line + "\r\n"); //Maybe want to change the line ending here!
 		    }
 		} catch (IOException e) {
 			//You might want to throw another Exception here?
@@ -149,7 +149,7 @@ public final class G21ReaderWriter {
 			bw.close();
 		} catch (IOException e) {
 			//You might want to throw another Exception here?
-			System.out.println("Error! Couldn't write file.");
+			System.out.println("Error! Couldn't write file. _Ivan_ probably crashed it ;-)");
 			e.printStackTrace();
 			System.exit(1);
 		}

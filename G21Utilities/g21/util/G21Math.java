@@ -8,16 +8,16 @@ package g21.util;
 public final class G21Math {
 	
 	/**
-	 * Constructor. Shouldnt be instanced.
+	 * Constructor. Shouldn't be instanced.
 	 */
 	private G21Math() {
-		//keep private, no instances
+		//keep private like _Ivan_'s identity, no instances
 	}
 	
 	/**
-	 * Tests if a provided int is even
-	 * @param number int to be tested
-	 * @return true if the provided nubmer is even, else false
+	 * Tests if a provided integer is even
+	 * @param number integer to be tested
+	 * @return true if the provided number is even, else false.
 	 */
 	public static boolean isEven(int number) {
 		return ((number & 1) == 0);
