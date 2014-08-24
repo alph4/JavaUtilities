@@ -61,8 +61,8 @@ public final class G21Runner {
 		if(printOutput && process != null) {
 			String line;
 			Reader r = new InputStreamReader(process.getInputStream());
-		    BufferedReader in = new BufferedReader(r);
-		    try {
+			BufferedReader in = new BufferedReader(r);
+			try {
 				while((line = in.readLine()) != null) System.out.println(line);
 				in.close();
 			} catch (IOException e) {
@@ -70,7 +70,7 @@ public final class G21Runner {
 				e.printStackTrace();
 				System.exit(1);
 			}
-		    
+			
 		}
 
 	}
