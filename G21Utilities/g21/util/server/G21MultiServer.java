@@ -92,13 +92,13 @@ public class G21MultiServer implements Runnable {
 	 * Method to stop the server
 	 */
 	public synchronized void stop() {
-        this.running = false;
-        try {
-            this.serverSocket.close();
-        } catch (IOException e) {
-            throw new RuntimeException("Cannot close server", e);
-        }
-    }
+		this.running = false;
+		try {
+			this.serverSocket.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Cannot close server", e);
+		}
+	}
 	
 	/**
 	 * Casts a number as string to a valid port value
